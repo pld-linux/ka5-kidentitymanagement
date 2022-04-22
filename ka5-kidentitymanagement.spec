@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	21.12.3
+%define		kdeappsver	22.04.0
 %define		kframever	5.56.0
 %define		qtver		5.9.0
 %define		kaname		kidentitymanagement
 Summary:	kidentitymanagement
 Name:		ka5-%{kaname}
-Version:	21.12.3
+Version:	22.04.0
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	9d1446fbcf69bff0c6eb605f8d2770d7
+# Source0-md5:	0afca287f23c981b861fb98f4e1e1967
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -87,6 +87,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %ghost %{_libdir}/libKF5IdentityManagement.so.5
 %attr(755,root,root) %{_libdir}/libKF5IdentityManagement.so.*.*.*
+%ghost %{_libdir}/libKF5IdentityManagementWidgets.so.5
+%attr(755,root,root) %{_libdir}/libKF5IdentityManagementWidgets.so.*.*.*
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.pim.IdentityManager.xml
 %{_datadir}/qlogging-categories5/kidentitymanagement.categories
 %{_datadir}/qlogging-categories5/kidentitymanagement.renamecategories
@@ -94,7 +96,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/KF5/KIdentityManagement
-%{_includedir}/KF5/kidentitymanagement_version.h
 %{_libdir}/cmake/KF5IdentityManagement
 %{_libdir}/libKF5IdentityManagement.so
 %{_libdir}/qt5/mkspecs/modules/qt_KIdentityManagement.pri
+%{_includedir}/KF5/KIdentityManagementWidgets
+%{_libdir}/libKF5IdentityManagementWidgets.so
+%{_libdir}/qt5/mkspecs/modules/qt_KIdentityManagementWidgets.pri

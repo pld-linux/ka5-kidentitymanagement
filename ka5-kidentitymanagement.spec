@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	22.12.3
+%define		kdeappsver	23.04.0
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kidentitymanagement
 Summary:	kidentitymanagement
 Name:		ka5-%{kaname}
-Version:	22.12.3
-Release:	2
+Version:	23.04.0
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	3f6bec58e0463754c9a6d6dc6ed71e18
+# Source0-md5:	4d122e130de0a5e8b7a654120b0ca213
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -85,20 +85,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%ghost %{_libdir}/libKF5IdentityManagement.so.5
-%attr(755,root,root) %{_libdir}/libKF5IdentityManagement.so.*.*.*
-%ghost %{_libdir}/libKF5IdentityManagementWidgets.so.5
-%attr(755,root,root) %{_libdir}/libKF5IdentityManagementWidgets.so.*.*.*
 %{_datadir}/dbus-1/interfaces/kf5_org.kde.pim.IdentityManager.xml
 %{_datadir}/qlogging-categories5/kidentitymanagement.categories
 %{_datadir}/qlogging-categories5/kidentitymanagement.renamecategories
+%ghost %{_libdir}/libKPim5IdentityManagement.so.5
+%attr(755,root,root) %{_libdir}/libKPim5IdentityManagement.so.*.*.*
+%ghost %{_libdir}/libKPim5IdentityManagementWidgets.so.5
+%attr(755,root,root) %{_libdir}/libKPim5IdentityManagementWidgets.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KF5/KIdentityManagement
-%{_libdir}/cmake/KF5IdentityManagement
-%{_libdir}/libKF5IdentityManagement.so
 %{_libdir}/qt5/mkspecs/modules/qt_KIdentityManagement.pri
-%{_includedir}/KF5/KIdentityManagementWidgets
-%{_libdir}/libKF5IdentityManagementWidgets.so
 %{_libdir}/qt5/mkspecs/modules/qt_KIdentityManagementWidgets.pri
+%{_includedir}/KPim5/KIdentityManagement
+%{_includedir}/KPim5/KIdentityManagementWidgets
+%{_libdir}/cmake/KF5IdentityManagement
+%{_libdir}/cmake/KPim5IdentityManagement
+%{_libdir}/libKPim5IdentityManagement.so
+%{_libdir}/libKPim5IdentityManagementWidgets.so

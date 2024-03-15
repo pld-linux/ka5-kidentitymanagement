@@ -1,37 +1,37 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeappsver	24.01.95
+%define		kdeappsver	23.08.4
 %define		kframever	5.94.0
 %define		qtver		5.15.2
 %define		kaname		kidentitymanagement
 Summary:	kidentitymanagement
 Name:		ka5-%{kaname}
-Version:	24.01.95
-Release:	0.1
+Version:	23.08.4
+Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/unstable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	2d758a2849a69826d62f826d9ace977c
+Source0:	https://download.kde.org/stable/release-service/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
+# Source0-md5:	ec95ed73fe6cf8741421c111d5360382
 URL:		http://www.kde.org/
-BuildRequires:	Qt6Core-devel >= %{qtver}
-BuildRequires:	Qt6Gui-devel >= 5.11.1
-BuildRequires:	Qt6Network-devel
-BuildRequires:	Qt6Test-devel >= 5.9.0
+BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt5Gui-devel >= 5.11.1
+BuildRequires:	Qt5Network-devel
+BuildRequires:	Qt5Test-devel >= 5.9.0
 BuildRequires:	cmake >= 3.20
 BuildRequires:	gettext-devel
 BuildRequires:	ka5-kpimtextedit-devel >= %{kdeappsver}
-BuildRequires:	kf6-extra-cmake-modules >= %{kframever}
-BuildRequires:	kf6-kcodecs-devel >= %{kframever}
-BuildRequires:	kf6-kcompletion-devel >= %{kframever}
-BuildRequires:	kf6-kconfig-devel >= %{kframever}
-BuildRequires:	kf6-kcoreaddons-devel >= %{kframever}
-BuildRequires:	kf6-kiconthemes-devel >= %{kframever}
-BuildRequires:	kf6-kio-devel >= %{kframever}
-BuildRequires:	kf6-ktextwidgets-devel >= %{kframever}
-BuildRequires:	kf6-kxmlgui-devel >= %{kframever}
+BuildRequires:	kf5-extra-cmake-modules >= %{kframever}
+BuildRequires:	kf5-kcodecs-devel >= %{kframever}
+BuildRequires:	kf5-kcompletion-devel >= %{kframever}
+BuildRequires:	kf5-kconfig-devel >= %{kframever}
+BuildRequires:	kf5-kcoreaddons-devel >= %{kframever}
+BuildRequires:	kf5-kiconthemes-devel >= %{kframever}
+BuildRequires:	kf5-kio-devel >= %{kframever}
+BuildRequires:	kf5-ktextwidgets-devel >= %{kframever}
+BuildRequires:	kf5-kxmlgui-devel >= %{kframever}
 BuildRequires:	ninja
-BuildRequires:	qt6-build >= %{qtver}
+BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
 BuildRequires:	tar >= 1:1.22
@@ -83,33 +83,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kaname}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libKPim6IdentityManagementCore.so.*.*
-%ghost %{_libdir}/libKPim6IdentityManagementCore.so.6
-%attr(755,root,root) %{_libdir}/libKPim6IdentityManagementQuick.so.*.*
-%ghost %{_libdir}/libKPim6IdentityManagementQuick.so.6
-%attr(755,root,root) %{_libdir}/libKPim6IdentityManagementWidgets.so.*.*
-%ghost %{_libdir}/libKPim6IdentityManagementWidgets.so.6
-%dir %{_libdir}/qt6/qml/org/kde/kidentitymanagement
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/BasicIdentityEditorCard.qml
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/CryptographyEditorCard.qml
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/IdentityConfigurationForm.qml
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/IdentityEditorPage.qml
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/kidentitymanagement_quick_plugin.qmltypes
-%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/kidentitymanagement/libkidentitymanagement_quick_plugin.so
-%{_libdir}/qt6/qml/org/kde/kidentitymanagement/qmldir
-%{_datadir}/dbus-1/interfaces/kf6_org.kde.pim.IdentityManager.xml
-%{_datadir}/qlogging-categories6/kidentitymanagement.categories
-%{_datadir}/qlogging-categories6/kidentitymanagement.renamecategories
+%{_datadir}/dbus-1/interfaces/kf5_org.kde.pim.IdentityManager.xml
+%{_datadir}/qlogging-categories5/kidentitymanagement.categories
+%{_datadir}/qlogging-categories5/kidentitymanagement.renamecategories
+%ghost %{_libdir}/libKPim5IdentityManagement.so.5
+%attr(755,root,root) %{_libdir}/libKPim5IdentityManagement.so.*.*.*
+%ghost %{_libdir}/libKPim5IdentityManagementWidgets.so.5
+%attr(755,root,root) %{_libdir}/libKPim5IdentityManagementWidgets.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/KPim6/KIdentityManagementCore
-%{_includedir}/KPim6/KIdentityManagementQuick
-%{_includedir}/KPim6/KIdentityManagementWidgets
-%{_libdir}/cmake/KPim6IdentityManagementCore
-%{_libdir}/cmake/KPim6IdentityManagementQuick
-%{_libdir}/cmake/KPim6IdentityManagementWidgets
-%{_libdir}/libKPim6IdentityManagementCore.so
-%{_libdir}/libKPim6IdentityManagementQuick.so
-%{_libdir}/libKPim6IdentityManagementWidgets.so
+%{_libdir}/qt5/mkspecs/modules/qt_KIdentityManagement.pri
+%{_libdir}/qt5/mkspecs/modules/qt_KIdentityManagementWidgets.pri
+%{_includedir}/KPim5/KIdentityManagement
+%{_includedir}/KPim5/KIdentityManagementWidgets
+%{_libdir}/cmake/KF5IdentityManagement
+%{_libdir}/cmake/KPim5IdentityManagement
+%{_libdir}/libKPim5IdentityManagement.so
+%{_libdir}/libKPim5IdentityManagementWidgets.so
